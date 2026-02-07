@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Authors</title>
+    <link rel="stylesheet" href="/css/author.css">
 </head>
 <body>
-$END$
+<a href="/author/add">Add Author</a>
+<a href="/">home</a>
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Age</th>
+        <th>Phone Number</th>
+        <th>Action</th>
+    </tr>
+
+    <tr th:each="author : ${authors}">
+        <td th:text="${author.id}"></td>
+        <td th:text="${author.name}"></td>
+        <td th:text="${author.surname}"></td>
+        <td th:text="${author.age}"></td>
+        <td th:text="${author.phoneNumber}"></td>
+        <td>
+            <form th:action="@{/author/delete}" method="post">
+                <input type="hidden" name="authorId" th:value="${author.id}">
+                <input type="submit" value="Delete">
+            </form>
+        </td>
+    </tr>
+</table>
+<p th:if="${Message}" th:text="${Message}" style="color: red"></p>
+<p th:if="${successMessage}" th:text="${successMessage}" style="color: gray"></p>
 </body>
 </html>

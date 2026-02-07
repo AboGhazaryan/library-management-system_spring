@@ -1,4 +1,15 @@
 package com.example.librarymanagementsystem_spring.service;
 
-public class AuthorService {
+import com.example.librarymanagementsystem_spring.model.Author;
+
+import java.util.List;
+
+public interface AuthorService {
+    List<Author> findAll();
+
+    Author save(Author author);
+
+
+    boolean deleteAuthorById(Integer id);
+
 }

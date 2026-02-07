@@ -1,10 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Home</title>
 </head>
 <body>
-$END$
+<a href="/books">Books</a> <br>
+<a href="/authors">Authors</a> <br>
+<a href="/categories">Categories</a> <br>
+<a href="/members">Members</a><br>
+<span th:if="${#authorization.expression('isAuthenticated()')}">
+    Welcome
+    <span th:text="${#authentication.principal.user.name}"></span>
+    <span th:text="${#authentication.principal.user.surname}"></span>
+
+    <form action="/logout" method="post" style="display:inline;">
+        <button type="submit">Logout</button>
+    </form>
+</span>
+
+<span th:if="${#authorization.expression('isAnonymous()')}">
+    <a href="/loginPage">Login</a>
+    <a href="/registerPage">Register</a>
+</span>
+
 </body>
 </html>

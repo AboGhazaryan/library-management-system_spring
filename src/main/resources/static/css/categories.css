@@ -1,0 +1,75 @@
+body {
+    margin: 0;
+    padding: 30px;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    background: #f4f6f9;
+    color: #333;
+}
+
+/* Navigation links */
+a {
+    display: inline-block;
+    margin-right: 15px;
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: #3498db;
+    font-weight: 600;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    max-width: 900px;
+    border-collapse: collapse;
+    background: #ffffff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px 14px;
+    text-align: left;
+}
+
+th {
+    background: #2c3e50;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+tr:nth-child(even) {
+    background: #f2f2f2;
+}
+
+tr:hover {
+    background: #eaf2f8;
+}
+
+/* Delete button */
+form {
+    margin: 0;
+}
+
+input[type="submit"] {
+    padding: 6px 12px;
+    background: #e74c3c;
+    border: none;
+    border-radius: 4px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background: #c0392b;
+}
+
+/* Messages */
+p {
+    margin-top: 15px;
+    font-weight: 600;
+}

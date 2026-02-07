@@ -1,7 +1,8 @@
-package com.example.studentportalspring.config;
+package com.example.librarymanagementsystem_spring.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.User;
@@ -20,7 +21,14 @@ public class WebSecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->
                         auth
-                                .requestMatchers("/", "/login", "/loginPage", "/register", "/css/**", "/js/**", "/images/**").permitAll()
+                                .requestMatchers("/",
+                                        "/login",
+                                        "/loginPage",
+                                        "/register",
+                                        "/registerPage",
+                                        "/css/**",
+                                        "/js/**",
+                                        "/images/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(form ->
@@ -32,33 +40,20 @@ public class WebSecurityConfig {
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
+                        .logoutSuccessUrl("/home")
                         .permitAll()
                 );
 
         return http.build();
     }
 
+
     @Bean
-    public UserDetailsService users(PasswordEncoder encoder) {
-        UserDetails user = User.withUsername("user")
-                .password(encoder.encode("password"))
-                .roles("USER")
-                .build();
-
-        UserDetails admin = User.withUsername("admin")
-                .password(encoder.encode("admin123"))
-                .roles("ADMIN")
-                .build();
-
-        return new InMemoryUserDetailsManager(user, admin);
+    DaoAuthenticationProvider authenticationProvider(UserDetailsService uds, PasswordEncoder encoder) {
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider(uds);
+        provider.setPasswordEncoder(encoder);
+        return provider;
     }
-
-////    @Bean
-////    DaoAuthenticationProvider authenticationProvider(UserDetailsService uds, PasswordEncoder encoder) {
-////        DaoAuthenticationProvider provider = new DaoAuthenticationProvider(uds);
-////        provider.setPasswordEncoder(encoder);
-////        return provider;
-////    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {

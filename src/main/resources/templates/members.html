@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Members</title>
+    <link rel="stylesheet" href="/css/members.css">
 </head>
 <body>
-$END$
+<a href="/member/add">Add Member</a>
+<a href="/">home</a>
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Borrowed Books</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each="member : ${members}">
+        <td th:text="${member.id}"></td>
+        <td>
+            <a th:href="@{/membersDetails(id=${member.id})}"
+               th:text="${member.fullName}"
+            ></a>
+        </td>
+        <td th:text="${member.email}"></td>
+        <td th:text="${member.borrowedBooks.size()}"></td>
+        <td>
+            <form th:action="@{/member/delete}" method="post">
+                <input type="hidden" name="memberId" th:value="${member.id}">
+                <input type="submit" value="Delete">
+            </form>
+        </td>
+    </tr>
+
+</table>
 </body>
 </html>

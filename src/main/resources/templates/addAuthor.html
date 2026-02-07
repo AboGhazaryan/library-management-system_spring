@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Add Author</title>
+    <link rel="stylesheet" href="/css/add-author.css">
 </head>
 <body>
-$END$
+<form action="/author/add" method="post">
+    Name: <input type="text" name="name"><br>
+    Surname: <input type="text" name="surname"><br>
+    Age: <input type="number" name="age"><br>
+    Phone: <input type="text" name="phoneNumber"><br>
+    <input type="submit" value="Add author">
+</form>
 </body>
 </html>

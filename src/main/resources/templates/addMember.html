@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Add Member</title>
+    <link rel="stylesheet" href="/css/add-member.css">
 </head>
 <body>
-$END$
+<form action="/member/add" method="post">
+    Full Name: <input type="text" name="fullName"><br>
+    Email: <input type="email" name="email"><br>
+    Phone: <input type="text" name="phone"><br>
+    Registration Date: <input type="date" name="registrationDate"><br>
+
+    <input type="submit" value="Add Member">
+</form>
 </body>
 </html>

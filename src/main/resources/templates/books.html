@@ -1,10 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Books</title>
+    <link rel="stylesheet" href="/css/books.css">
 </head>
 <body>
-$END$
+<a href="/book/add">Add Book</a>
+<a href="/">home</a>
+<form method="get" th:action="@{/books}">
+    <input type="text"
+           name="keyword"
+           placeholder="Search by title or author"
+           th:value="${keyword}">
+    <label>Category</label>
+    <select name="categoryId">
+        <option value="">All</option>
+        <option th:each="category : ${categories}"
+                th:value="${category.id}"
+                th:text="${category.name}"
+                th:selected="${category.id == selectedCategory}">
+        </option>
+    </select>
+
+    <button type="submit">Search</button>
+</form>
+<p th:if="${infoMessage}" th:text="${infoMessage}" style="color:gray"></p>
+
+
+<table border ="1">
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Year</th>
+        <th>Genre</th>
+        <th>Category</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each="book : ${books}">
+        <td th:text="${book.id}"></td>
+        <td th:text="${book.title}"></td>
+        <td th:text="${book.author.name + ' ' + book.author.surname}"></td>
+        <td th:text="${book.year}"></td>
+        <td th:text="${book.genre}"></td>
+        <td th:text="${book.category.name}"></td>
+        <td>
+            <form th:action="@{/book/delete}" method="post">
+                <input type="hidden" name="bookId" th:value="${book.id}">
+                <input type="submit" value="Delete">
+            </form>
+        </td>
+    </tr>
+</table>
+<p th:if="${successMessage}" th:text="${successMessage}" style="color:gray"></p>
+<p th:if="${message}" th:text="${message}" style="color:red"></p>
+
+
 </body>
 </html>
