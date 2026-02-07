@@ -16,6 +16,4 @@ public interface MemberService {
     boolean borrowBook(Integer memberId, Integer bookId);
 
     void returnBook(Integer memberId,Integer bookId);
-
-
 }

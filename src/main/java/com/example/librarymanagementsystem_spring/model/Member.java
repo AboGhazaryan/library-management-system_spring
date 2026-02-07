@@ -28,5 +28,5 @@ public class Member {
     @ManyToMany
     @JoinTable(name ="member_books",joinColumns = @JoinColumn(name="member_id"),
     inverseJoinColumns = @JoinColumn(name="book_id"))
-    private List<Book> borrowedBooks = new ArrayList<>();
+    private List<Book> borrowedBooks;
 }

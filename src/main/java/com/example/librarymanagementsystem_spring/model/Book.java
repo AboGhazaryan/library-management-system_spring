@@ -32,7 +32,7 @@ public class Book {
     private Category category;
 
     @ManyToMany(mappedBy = "borrowedBooks")
-    private List<Member> members = new ArrayList<>();
+    private List<Member> members;
 
 
 }

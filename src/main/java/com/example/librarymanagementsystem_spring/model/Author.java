@@ -13,6 +13,7 @@ import java.util.List;
 @Entity
 @Table(name="author")
 public class Author {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -24,3 +25,4 @@ public class Author {
     @OneToMany(mappedBy = "author")
     private List<Book> books;
 }
+

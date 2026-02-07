@@ -17,13 +17,7 @@ public interface BookService {
 
     List<Book> searchBooks(String keyword);
 
-
     List<Book> findByCategoryId(Integer categoryId);
 
     List<Book> searchBookAndFilter(String keyword,Integer categoryId);
-
-
-
-
-
 }

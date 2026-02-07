@@ -9,7 +9,5 @@ public interface AuthorService {
 
     Author save(Author author);
 
-
     boolean deleteAuthorById(Integer id);
-
 }

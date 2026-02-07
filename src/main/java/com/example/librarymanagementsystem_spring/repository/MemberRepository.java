@@ -7,7 +7,6 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
-
 public interface MemberRepository extends JpaRepository<Member, Integer> {
     @Query("""
     select distinct m from Member m
